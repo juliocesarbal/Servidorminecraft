@@ -39,6 +39,14 @@ npm run dev
 1. El panel muestra el estado actual de la instancia
 2. Si está **detenido**, usa el botón verde "Iniciar Servidor"
 3. Si está **corriendo**, usa el botón rojo "Detener Servidor"
+   - Te pedirá confirmación
+   - **Luego pedirá una contraseña** para evitar detenciones accidentales
+   - Contraseña: `cholo`
 4. Click en "Actualizar" para ver el estado más reciente
 
 La instancia se apaga automáticamente después de 5 minutos sin jugadores.
+
+## Seguridad
+
+- **Protección por contraseña**: Para detener el servidor manualmente se requiere la contraseña `cholo`
+- Credenciales AWS almacenadas en `.env.local` (no incluido en git)

@@ -36,7 +36,17 @@ export default function ControlPanel({ state, onRefresh }: ControlPanelProps) {
   };
 
   const handleStop = async () => {
+    // Pedir confirmación
     if (!confirm('¿Detener el servidor? Los jugadores serán desconectados.')) return;
+
+    // Pedir contraseña
+    const password = prompt('Ingresa la contraseña para detener el servidor:');
+
+    // Validar contraseña
+    if (password !== 'cholo') {
+      setMessage('❌ Contraseña incorrecta. No se detendrá el servidor.');
+      return;
+    }
 
     setLoading(true);
     setMessage('');
@@ -46,7 +56,7 @@ export default function ControlPanel({ state, onRefresh }: ControlPanelProps) {
       const data = await response.json();
 
       if (data.success) {
-        setMessage('Servidor deteniéndose...');
+        setMessage('✅ Servidor deteniéndose...');
         setTimeout(onRefresh, 3000);
       } else {
         setMessage('Error al detener el servidor');
