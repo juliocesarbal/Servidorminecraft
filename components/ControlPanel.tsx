@@ -68,7 +68,10 @@ export default function ControlPanel({ state, onRefresh }: ControlPanelProps) {
     }
   };
 
-  const isDisabled = loading || state === 'pending' || state === 'stopping';
+  // Determinar si cada botón debe estar habilitado
+  const canStart = state === 'stopped' && !loading;
+  const canStop = state === 'running' && !loading;
+  const isTransitioning = state === 'pending' || state === 'stopping';
 
   return (
     <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 shadow-2xl border border-gray-700">
@@ -77,7 +80,7 @@ export default function ControlPanel({ state, onRefresh }: ControlPanelProps) {
       <div className="flex flex-col sm:flex-row gap-4">
         <button
           onClick={handleStart}
-          disabled={isDisabled || state === 'running'}
+          disabled={!canStart || isTransitioning}
           className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-green-500/50"
         >
           <Power className="w-5 h-5" />
@@ -86,7 +89,7 @@ export default function ControlPanel({ state, onRefresh }: ControlPanelProps) {
 
         <button
           onClick={handleStop}
-          disabled={isDisabled || state === 'stopped'}
+          disabled={!canStop || isTransitioning}
           className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-red-500/50"
         >
           <PowerOff className="w-5 h-5" />

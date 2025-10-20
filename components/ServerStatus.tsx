@@ -29,11 +29,11 @@ export default function ServerStatus({ state, publicIp, instanceType, launchTime
       case 'running':
         return 'En Línea';
       case 'stopped':
-        return 'Apagado';
+        return 'Detenido';
       case 'pending':
-        return 'Iniciando...';
+        return 'Encendiendo';
       case 'stopping':
-        return 'Deteniéndose...';
+        return 'Apagando';
       default:
         return 'Desconocido';
     }
