@@ -106,7 +106,7 @@ export default function Home() {
 
               <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/30 rounded-lg p-4 border border-purple-700">
                 <h3 className="text-purple-300 font-bold mb-2">Región</h3>
-                <p className="text-white">us-east-1 (N. Virginia)</p>
+                <p className="text-white">sa-east-1 (São Paulo)</p>
               </div>
 
               <div className="bg-gradient-to-br from-green-900/30 to-green-800/30 rounded-lg p-4 border border-green-700">
