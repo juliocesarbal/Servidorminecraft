@@ -21,7 +21,12 @@ export default function Home() {
 
   const fetchStatus = async () => {
     try {
-      const response = await fetch('/api/ec2/status');
+      const response = await fetch('/api/ec2/status', {
+        cache: 'no-cache',
+        headers: {
+          'Cache-Control': 'no-cache',
+        },
+      });
       const data = await response.json();
 
       if (response.ok) {
@@ -40,8 +45,8 @@ export default function Home() {
   useEffect(() => {
     fetchStatus();
 
-    // Auto-refresh cada 15 segundos
-    const interval = setInterval(fetchStatus, 15000);
+    // Auto-refresh cada 5 segundos para sincronización en tiempo real
+    const interval = setInterval(fetchStatus, 5000);
     return () => clearInterval(interval);
   }, []);
 

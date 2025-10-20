@@ -24,6 +24,10 @@ export default function ControlPanel({ state, onRefresh }: ControlPanelProps) {
 
       if (data.success) {
         setMessage('Servidor iniciando... Espera 2-3 minutos.');
+        // Refrescar inmediatamente y luego cada segundo durante 10 segundos
+        onRefresh();
+        setTimeout(onRefresh, 1000);
+        setTimeout(onRefresh, 2000);
         setTimeout(onRefresh, 3000);
       } else {
         setMessage('Error al iniciar el servidor');
@@ -57,6 +61,10 @@ export default function ControlPanel({ state, onRefresh }: ControlPanelProps) {
 
       if (data.success) {
         setMessage('✅ Servidor deteniéndose...');
+        // Refrescar inmediatamente y luego cada segundo durante 10 segundos
+        onRefresh();
+        setTimeout(onRefresh, 1000);
+        setTimeout(onRefresh, 2000);
         setTimeout(onRefresh, 3000);
       } else {
         setMessage('Error al detener el servidor');
@@ -119,7 +127,7 @@ export default function ControlPanel({ state, onRefresh }: ControlPanelProps) {
       <div className="mt-6 bg-gray-800/50 rounded-lg p-4 border border-gray-700">
         <p className="text-sm text-gray-400">
           <strong className="text-white">Nota:</strong> El servidor tiene auto-apagado configurado.
-          Se detendrá automáticamente después de 5 minutos sin jugadores para ahorrar costos.
+          Se detendrá automáticamente después de 10 minutos sin jugadores para ahorrar costos.
         </p>
       </div>
     </div>
