@@ -25,23 +25,14 @@ export async function GET() {
       );
     }
 
-    return NextResponse.json(
-      {
-        instanceId: instance.InstanceId,
-        state: instance.State?.Name,
-        publicIp: instance.PublicIpAddress || null,
-        privateIp: instance.PrivateIpAddress,
-        instanceType: instance.InstanceType,
-        launchTime: instance.LaunchTime,
-      },
-      {
-        headers: {
-          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-          'Pragma': 'no-cache',
-          'Expires': '0',
-        },
-      }
-    );
+    return NextResponse.json({
+      instanceId: instance.InstanceId,
+      state: instance.State?.Name,
+      publicIp: instance.PublicIpAddress || null,
+      privateIp: instance.PrivateIpAddress,
+      instanceType: instance.InstanceType,
+      launchTime: instance.LaunchTime,
+    });
   } catch (error) {
     console.error('Error al obtener estado de EC2:', error);
     return NextResponse.json(
